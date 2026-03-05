@@ -47,30 +47,24 @@
   transform: translateY(0);
 }
 
-/* ——— Hero: liquid glass + image slot ——— */
+/* ——— Hero: full-width eye-catching image + overlay text ——— */
 .hero {
-  text-align: center;
   margin-bottom: var(--space-2xl);
-  padding: var(--space-xl);
   position: relative;
-  border-radius: var(--glass-radius);
 }
 
-.hero-glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--glass-border);
+.hero-image-wrap {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  position: relative;
+  border-radius: var(--glass-radius);
+  overflow: hidden;
 }
 
 .hero-image-slot {
   width: 100%;
-  max-width: 280px;
-  aspect-ratio: 1;
-  margin: 0 auto var(--space-lg);
-  border-radius: 50%;
-  background: linear-gradient(145deg, var(--accent-soft) 0%, var(--glass-border) 50%, transparent 100%);
-  border: 1px solid var(--glass-border);
+  aspect-ratio: 18 / 9;
+  position: relative;
   overflow: hidden;
 }
 
@@ -78,6 +72,45 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 38%;
+}
+
+.hero-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(8, 9, 10, 0.96) 0%,
+    rgba(8, 9, 10, 0.82) 22%,
+    rgba(8, 9, 10, 0.5) 45%,
+    rgba(8, 9, 10, 0.15) 65%,
+    transparent 82%
+  );
+  pointer-events: none;
+}
+
+/* Asymmetrical hero text (TOPSPIN-style: headline left, clear hierarchy) */
+.hero-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-xl) var(--space-xl) var(--space-xl) var(--space-2xl);
+  text-align: left;
+  max-width: 36rem;
+}
+
+/* Resume hero: no liquid glass, no dark gradient behind name/contact */
+.hero-glass {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+}
+
+.hero-text.hero-glass {
+  background: transparent;
 }
 
 .hero-name {
@@ -126,20 +159,21 @@
 .profile-section h2 {
   font-family: var(--font-serif);
   font-size: 0.8rem;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text-muted);
   margin-bottom: var(--space-md);
 }
 
-/* ——— Cards: hover glow (key interaction) ——— */
+/* ——— Cards: TOPSPIN-style floating panels, soft shadow at rest ——— */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   padding: var(--space-md) var(--space-lg);
   margin-bottom: var(--space-sm);
-  border-radius: 12px;
+  border-radius: var(--glass-radius);
+  box-shadow: var(--card-shadow);
   transition: transform 0.35s var(--ease-out-expo), border-color 0.25s ease, box-shadow 0.35s ease, background 0.25s ease;
 }
 
@@ -151,7 +185,7 @@
   transform: translateY(-4px);
   border-color: var(--cyber-edge);
   background: var(--bg-card-hover);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25), 0 0 24px var(--accent-soft);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .card-head {
@@ -298,6 +332,10 @@
 }
 
 @media (max-width: 640px) {
+  .hero-text {
+    padding: var(--space-lg) var(--space-lg);
+    max-width: none;
+  }
   .card-head {
     flex-direction: column;
     align-items: flex-start;

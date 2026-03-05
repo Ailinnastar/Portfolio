@@ -22,13 +22,19 @@ export default function ProfilePage({ lang, noHeader }) {
       )}
 
       <main className="profile-main">
-        <section className="hero hero-glass" data-reveal>
-          <div className="hero-image-slot" aria-hidden="true">
-            {/* Drop your photo or visual here — e.g. <img src="..." alt="" /> */}
-          </div>
-          <h1 className="hero-name">{profile.name}</h1>
-          <p className="hero-tagline">{profile.tagline}</p>
-          <div className="hero-contact">
+        <section className="hero" data-reveal>
+          <div className="hero-image-wrap">
+            <div className="hero-image-slot" aria-hidden="true">
+              <img
+                src={`${import.meta.env.BASE_URL}image/IMG_1996.JPG`}
+                alt=""
+              />
+              <div className="hero-image-overlay" aria-hidden="true" />
+            </div>
+            <div className="hero-text hero-glass">
+              <h1 className="hero-name">{profile.name}</h1>
+              <p className="hero-tagline">{profile.tagline}</p>
+              <div className="hero-contact">
             <a href={`mailto:${profile.contact.email}`}>{profile.contact.email}</a>
             <span className="sep">·</span>
             <a href={`tel:${profile.contact.phone}`}>{profile.contact.phone}</a>
@@ -36,6 +42,8 @@ export default function ProfilePage({ lang, noHeader }) {
             <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer">
               LinkedIn
             </a>
+              </div>
+            </div>
           </div>
         </section>
 

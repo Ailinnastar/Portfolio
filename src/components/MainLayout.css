@@ -11,7 +11,7 @@
   to { opacity: 1; }
 }
 
-/* Key element: liquid glass header */
+/* TOPSPIN-style: liquid glass header with soft floating shadow */
 .main-header {
   display: flex;
   align-items: center;
@@ -22,6 +22,7 @@
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
 }
 
 .main-header-btn {

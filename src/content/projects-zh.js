@@ -13,22 +13,11 @@ export const projectsZh = {
   },
   internship: [
     {
-      title: '肿瘤格局与患者旅程',
-      company: 'L.E.K.咨询',
-      role: '数据分析咨询项目实习',
-      period: '2025年12月 – 2026年1月',
-      description: '端到端格局与 HCP 研究产出的交付物。',
-      points: [
-        'GTM 战略、上市与市场准入相关的结构化故事线与汇报材料',
-        '患者旅程与检测流程图；诊断、转诊与治疗启动的障碍',
-        '特定突变肿瘤细分领域的标准治疗、新兴疗法与临床差异化梳理',
-      ],
-    },
-    {
       title: '多语言爬取与价格对标',
       company: 'OC&C',
       role: '数据分析咨询项目实习',
       period: '2025年10月 – 2026年1月',
+      cover: 'image/multilingual-scraping.png',
       description: '全球零售战略相关的数据流程与看板。',
       points: [
         'Python 多语言产品采集与匹配流程 — 跨市场比价准确率提升约 70%',
@@ -37,39 +26,27 @@ export const projectsZh = {
       ],
     },
     {
-      title: '生物制药市场策略与 KOL 洞察',
-      company: 'BenHealth',
-      role: '医疗咨询实习生',
-      period: '2025年8月 – 2025年12月',
-      description: '面向生物制药客户的市场与准入交付物。',
-      points: [
-        '整合 KOL 洞察与定量预测的市场战略报告',
-        '人群规模与价格敏感度模型；治疗决策流程与患者适用性映射',
-        '新疗法候选的药物治疗格局与临床缺口研究',
-      ],
-    },
-    {
-      title: '生物制药与电商分析',
+      title: '电商分析',
       company: 'IPSOS Strategy3',
       role: '咨询实习生',
       period: '2025年8月 – 2025年10月',
-      description: '分析与战略相关交付物。',
+      cover: 'image/ipsos-ecommerce.png',
+      description: '产品与价格数据整合、品牌表现与跨国定价分析等电商分析与战略相关交付物。',
       points: [
-        '生物制药市场潜力分析：诊断路径、未满足需求、报销影响',
-        '多电商平台产品与价格数据整合；品牌表现与跨国定价结构',
+        '电商产品与价格数据整合；品牌表现与跨国定价结构',
+        '竞品与渠道分析，支持品类与定价决策',
         '国际制造商在中国市场本地化策略的全球专家访谈',
       ],
     },
     {
-      title: '拉曼分析与制剂优化',
+      title: '拉曼分析',
       company: '德国默克',
       role: '临床数据分析实习',
       period: '2025年6月 – 2025年9月',
-      description: '研发分析与制剂相关交付物。',
+      cover: 'image/IMG_1795.png',
+      description: '拉曼实验相关分析模型构建与验证；成分预测准确率提升至 90%。',
       points: [
         '拉曼实验相关分析模型 — 成分预测准确率提升至 90%',
-        '客户注射剂配方优化；粘度降低 20%',
-        '上游生物工艺的结构化竞品与市场评估',
       ],
     },
     {
@@ -77,6 +54,7 @@ export const projectsZh = {
       company: '奥纬咨询',
       role: '数据分析咨询项目实习',
       period: '2024年9月 – 2025年4月',
+      cover: 'image/credit-risk-model.png',
       description: '银行风险与合规相关交付物。',
       points: [
         '信用风险模型（PD、LGD）优化；巴塞尔 III 合规；预测准确率提升 18%',
@@ -89,6 +67,7 @@ export const projectsZh = {
       company: '阿斯利康',
       role: '商业运营实习',
       period: '2024年7月 – 2024年9月',
+      cover: 'image/IMG_6007.JPG',
       description: '合作与运营相关交付物。',
       points: [
         '阿斯利康与三甲医院重点合作项目的落地与评估支持',

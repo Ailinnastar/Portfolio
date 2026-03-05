@@ -1,196 +1,246 @@
 .projects-page {
-  min-height: 100%;
-  max-width: var(--content-max);
+  padding: 40px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding-top: var(--space-2xl);
-}
-
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
-}
-
-[data-reveal].revealed {
-  opacity: 1;
-  transform: translateY(0);
+  color: var(--text-primary);
 }
 
 .projects-header {
-  margin-bottom: var(--space-xl);
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--border);
-}
-
-.projects-visual-slot {
-  width: 100%;
-  max-width: 100%;
-  height: 120px;
-  margin-bottom: var(--space-lg);
-  border-radius: var(--glass-radius);
-  background: linear-gradient(135deg, var(--accent-soft) 0%, var(--glass-border) 40%, transparent 100%);
-  border: 1px solid var(--glass-border);
-  overflow: hidden;
-}
-
-.projects-visual-slot img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  margin-bottom: var(--space-lg, 1.5rem);
 }
 
 .projects-title {
   font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
   font-weight: 600;
   letter-spacing: 0.02em;
-  margin-bottom: var(--space-xs);
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
 }
 
 .projects-subtitle {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--text-muted);
   line-height: 1.5;
 }
 
-/* Key element: liquid glass tabs */
-.projects-tabs-glass {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
-  margin-bottom: var(--space-xl);
-  padding: var(--space-sm);
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--glass-border);
-  border-radius: var(--glass-radius);
+/* The Tabletop */
+.pile-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  margin-top: 0;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: var(--glass-radius, 16px);
+  overflow: hidden;
 }
 
+/* The Cards — theme-aligned + cover (封面) */
+.pile-card {
+  position: absolute;
+  width: 300px;
+  min-height: 200px;
+  top: 30%;
+  left: 35%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 0;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  overflow: hidden;
+}
+
+.pile-card:active {
+  cursor: grabbing;
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Cover image 封面 */
+.card-cover-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--bg-card-hover);
+  overflow: hidden;
+}
+
+.card-cover-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.card-inner {
+  padding: 1rem 1.25rem;
+  color: var(--text-primary);
+}
+
+.card-tag {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.project-card-title {
+  margin: 0.35rem 0 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: var(--font-serif);
+  color: var(--text-primary);
+}
+
+.pile-card .project-card-teaser {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.card-footer {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Tabs — match overall dark theme */
 .projects-tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
-  margin-bottom: var(--space-xl);
+  gap: var(--space-sm, 1rem);
+  margin-bottom: var(--space-lg, 1.5rem);
 }
 
 .projects-tab {
   font-family: var(--font-serif);
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.6rem 1.1rem;
-  background: transparent;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1rem;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  background: transparent;
   color: var(--text-muted);
   cursor: pointer;
-  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+  border-radius: var(--glass-radius, 16px);
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .projects-tab:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--cyber-edge);
   color: var(--text-primary);
-  box-shadow: 0 0 16px var(--accent-soft);
-  transform: translateY(-1px);
+  border-color: var(--border-hover);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .projects-tab.active {
-  background: var(--bg-card-hover);
-  border-color: var(--accent);
   color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent), 0 4px 16px var(--accent-soft);
+  border-color: var(--accent);
+  background: rgba(165, 180, 252, 0.08);
 }
 
-.panel-description {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-bottom: var(--space-md);
-  padding-bottom: var(--space-sm);
-  border-bottom: 1px solid var(--border);
-}
-
-.projects-panel {
-  animation: panelFade 0.3s var(--ease-out-quart);
-}
-
-@keyframes panelFade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.project-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  padding: var(--space-md) var(--space-lg);
-  margin-bottom: var(--space-sm);
-  border-radius: 12px;
-  transition: transform 0.35s var(--ease-out-expo), border-color 0.25s ease, box-shadow 0.35s ease, background 0.25s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--cyber-edge);
-  background: var(--bg-card-hover);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2), 0 0 24px var(--accent-soft);
-}
-
-.project-card-head {
+/* Diary overlay */
+.diary-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
-  margin-bottom: 0.35rem;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg, 2rem);
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
-.project-card-title {
-  font-size: 1.05rem;
+.diary-panel {
+  position: relative;
+  width: 100%;
+  max-width: 36rem;
+  max-height: 85vh;
+  overflow: auto;
+  background: var(--bg-card, #0f1012);
+  border: 1px solid var(--border, rgba(255,255,255,0.06));
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  color: var(--text-primary, #f5f5f4);
+}
+
+.diary-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text-muted, #9ca3af);
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.diary-close:hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
+
+.diary-content { padding: 2.5rem 2rem 2rem; }
+
+.diary-title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.35rem;
   font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--text-primary);
 }
 
-.project-card-meta {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.project-card-role {
+.diary-meta {
   font-size: 0.88rem;
   color: var(--text-muted);
   margin-bottom: 0.5rem;
 }
 
-.project-card-desc {
-  font-size: 0.9rem;
+.diary-desc {
+  font-size: 1rem;
+  line-height: 1.65;
   color: var(--text-primary);
-  margin-bottom: 0.75rem;
-  line-height: 1.5;
+  margin-bottom: 1rem;
 }
 
-.project-card-list {
+.diary-section-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.diary-approach-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+.diary-list {
   list-style: none;
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.7;
   color: var(--text-primary);
 }
-
-.project-card-list li {
+.diary-list li {
   position: relative;
-  padding-left: 1rem;
-  margin-bottom: 0.35rem;
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
 }
-
-.project-card-list li::before {
+.diary-list li::before {
   content: '·';
   position: absolute;
   left: 0;
-  color: var(--text-muted);
-}
-
-@media (max-width: 640px) {
-  .project-card-head {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  color: var(--accent);
+  font-weight: bold;
 }

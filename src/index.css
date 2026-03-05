@@ -15,11 +15,14 @@
   --cyber-cyan: rgba(34, 211, 238, 0.15);
   --cyber-edge: rgba(165, 180, 252, 0.25);
 
-  /* Liquid glass — key elements only */
-  --glass-bg: rgba(15, 16, 18, 0.6);
+  /* Liquid glass — key elements only (TOPSPIN-style: subtle, floating) */
+  --glass-bg: rgba(15, 16, 18, 0.58);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-blur: 20px;
   --glass-radius: 16px;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.03);
+  --card-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.3), 0 0 24px var(--accent-soft);
 
   /* Apple-inspired spacing & rhythm */
   --space-xs: 0.5rem;

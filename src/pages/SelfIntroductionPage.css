@@ -25,27 +25,28 @@
 .intro-title {
   font-family: var(--font-serif);
   font-size: 0.8rem;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
-/* Key element: liquid glass for summary block */
+/* TOPSPIN-style: liquid glass summary block with soft shadow */
 .intro-glass {
   max-width: var(--content-narrow);
   margin: 0 auto;
-  padding: var(--space-xl);
+  padding: var(--space-xl) var(--space-2xl);
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
   border-radius: var(--glass-radius);
+  box-shadow: var(--glass-shadow);
 }
 
 .executive-summary {
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: 1.05rem;
+  line-height: 1.8;
   color: var(--text-primary);
 }
 
