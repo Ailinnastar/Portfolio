@@ -14,6 +14,7 @@ export const projectsEn = {
   sectionTitles: {
     approach: 'How I approached it',
     outcomes: 'Key outcomes',
+    viewProject: 'View project →',
   },
   internship: [
     {
@@ -91,58 +92,66 @@ export const projectsEn = {
     },
   ],
   academic: [
-    {
-      title: 'Liver Cancer Immune Microenvironment & Therapeutic Modeling',
-      period: 'May 2024 – Nov 2024',
-      context: 'Bioinformatics / Computational Biology',
-      teaser: 'One research project: immune microenvironment and treatment-response modeling in liver cancer.',
-      description: 'I led one research project on the pro-tumorigenic role of immune cells in the liver cancer microenvironment and built computational models to predict treatment response when targeting stromal cells. The work combined analysis of public and in-house data with mechanistic-style models implemented in Python so we could explore how different cell types and interventions might affect outcomes. The project was scoped as a single thesis-style piece with a clear question, methodology, and set of results.',
-      approach: 'I framed the project around one main question: how do specific immune and stromal populations in the liver cancer microenvironment influence tumor progression and response to stromal-targeted therapy? I started with a literature and data review to define the cell types and pathways of interest, then built a pipeline for processing and integrating the data. I implemented the computational models in Python with explicit assumptions and parameters, validated on held-out or external data where possible, and ran sensitivity analyses to see which factors drove the predictions. I wrote the work up as one coherent narrative: motivation, methods, results, and implications.',
-      points: [
-        'Analysis of pro-tumorigenic immune cell mechanisms in the liver cancer microenvironment',
-        'Computational models predicting treatment response when targeting stromal cells (Python)',
-      ],
-    },
+    // Liver Cancer Immune — commented out for now
+    // {
+    //   title: 'Liver Cancer Immune Microenvironment & Therapeutic Modeling',
+    //   period: 'May 2024 – Nov 2024',
+    //   context: 'Bioinformatics / Computational Biology',
+    //   teaser: 'One research project: immune microenvironment and treatment-response modeling in liver cancer.',
+    //   description: 'I led one research project on the pro-tumorigenic role of immune cells in the liver cancer microenvironment and built computational models to predict treatment response when targeting stromal cells. The work combined analysis of public and in-house data with mechanistic-style models implemented in Python so we could explore how different cell types and interventions might affect outcomes. The project was scoped as a single thesis-style piece with a clear question, methodology, and set of results.',
+    //   approach: 'I framed the project around one main question: how do specific immune and stromal populations in the liver cancer microenvironment influence tumor progression and response to stromal-targeted therapy? I started with a literature and data review to define the cell types and pathways of interest, then built a pipeline for processing and integrating the data. I implemented the computational models in Python with explicit assumptions and parameters, validated on held-out or external data where possible, and ran sensitivity analyses to see which factors drove the predictions. I wrote the work up as one coherent narrative: motivation, methods, results, and implications.',
+    //   points: [
+    //     'Analysis of pro-tumorigenic immune cell mechanisms in the liver cancer microenvironment',
+    //     'Computational models predicting treatment response when targeting stromal cells (Python)',
+    //   ],
+    // },
     {
       title: 'Predicting Protein Subcellular Localization',
       period: 'Mar 2025 – May 2025',
       context: 'Computational Biology',
-      teaser: 'One ML project: ensemble models for subcellular localization from sequence-derived features.',
-      description: 'I completed one course project focused on predicting protein subcellular localization from sequence-derived features using ensemble ML (Random Forest, Gradient Boosting, and class-specific models). I defined and computed 69 key features with Biopython and achieved about 75% accuracy in a blind challenge, with roughly 90% accuracy on high-confidence predictions. The project was run as a single end-to-end pipeline: feature engineering, model selection, validation, and reporting.',
-      approach: 'I treated it as one project with a clear pipeline: sequences in, features out, then train and evaluate. I started by reviewing the biology and the literature to choose a small set of feature types (e.g. sequence composition, motifs, predicted properties), then implemented feature extraction with Biopython and documented each feature. I compared multiple model families and chose an ensemble approach to combine strengths and reduce variance. I used proper train/validation/test splits and reported performance on the blind test set, plus a high-confidence subset, so the results were interpretable and comparable.',
+      cover: 'image/protein-subcellular.png',
+      teaser: 'Five-class ensemble (RF, GBM, class specialists) with Biopython feature extraction, SMOTE, and a three-tier confidence system.',
+      description: 'I built a machine learning pipeline to predict protein subcellular localization (cytosolic, extracellular/secreted, mitochondrial, nuclear, other) from amino acid sequences. Using Biopython I extracted 143 sequence-derived features per protein: global properties (length, molecular weight, isoelectric point, aromaticity, instability index, GRAVY), full amino acid composition, N-terminal (20) and C-terminal (50) residues, and motif/pattern matching for targeting signals. After feature selection I kept the 69 most informative features (e.g. n_hydrophobicity, hydrophobic_density, n_negative, molecular_weight_kDa, length, starts_with_M, mito_score). The dataset was class-imbalanced, so I applied SMOTE to balance all five classes to 2189 samples each before training. I designed a two-stage ensemble: general models (Random Forest and Gradient Boosting, tuned with GridSearchCV) plus class-specific specialist models (one per class, where applicable). Ensemble blending weights were tuned per class on a 15% stratified hold-out validation set (F1 as the main metric). The specialised ensemble reached 72.62% test accuracy (vs 69.19% baseline RF), with strong performance on Extr and Othr and remaining confusion between Cyto and Nucl. I added a three-tier confidence system (High, Medium, Low) using class-specific probability thresholds derived from validation-set distributions; high-confidence predictions reached ~90% accuracy. The same pipeline was applied to a blind test set (20 sequences), achieving 75% accuracy, with predictions and confidence levels reported.',
+      approach: 'I structured the work as a single end-to-end pipeline. (1) Feature extraction: FASTA sequences loaded with Biopython; for each protein I computed global physicochemical descriptors, per-residue composition, terminal windows (N 20, C 50), and motif scores (e.g. positive charge, hydrophobicity, targeting signals). (2) Data processing: train/test split (stratified, 80/20), then on the training side I applied feature selection (keeping 69 features), scaling, and SMOTE to balance the five classes; the same selection and scaler were applied to test and blind data. (3) Model design: I trained a baseline Random Forest, then an ensemble that combines RF, Gradient Boosting, and per-class specialists (GBM or RF or SVC depending on class). For each class I tuned the blending weights (RF, GBM, specialist) on the hold-out validation set by grid-searching weight combinations and maximising F1. (4) Evaluation: I reported per-class and overall accuracy, precision, recall, F1, and confusion matrix; analysed Cyto–Nucl confusion; and defined class-specific confidence thresholds from the validation probability distributions so that High/Medium/Low tiers would reflect actual reliability (high-conf ~90% accurate). Blind predictions were produced with the same feature pipeline and confidence assignment.',
       points: [
-        'Ensemble ML (Random Forest, Gradient Boosting, class-specific models) from sequence-derived features',
-        '69 key features with Biopython; ~75% accuracy in blind challenge, ~90% on high-confidence predictions',
+        '143 Biopython features (global, composition, N/C-terminal, motifs) reduced to 69; SMOTE to balance five classes',
+        'Two-stage ensemble: RF + GBM + class specialists; per-class weights tuned on 15% hold-out (F1); 72.62% test accuracy, 75% blind test',
+        'Three-tier confidence (High/Medium/Low) with class-specific thresholds; high-confidence predictions ~90% accurate',
       ],
     },
     {
       title: 'Fat–Water Separation in MRI (Bioimaging)',
       period: 'Mar 2025 – May 2025',
       context: 'Biomedical Imaging',
-      teaser: 'One imaging project: signal models and optimization for fat fraction and R2* in MRI.',
-      description: 'I worked on one bioimaging project: building signal models for fat fraction (PDFF) and R2* in MRI and addressing fat–water ambiguity and real-tissue signal behavior. The project used parallelized multi-start optimization and adapted to Gaussian and Rician noise; I validated on simulated, phantom, and in vivo data. The deliverable was a single, coherent method and validation report that could be used for further development or comparison with other techniques.',
-      approach: 'I approached it as one method-development project: define the signal model (including fat–water ambiguity and noise), implement the fitting (multi-start to handle non-convexity), and validate on a hierarchy of data (simulated, phantom, in vivo). I started from the physics and the existing literature to write down the model and the objective function, then implemented the optimizer and ran it on the different datasets. I reported accuracy, robustness, and failure modes so that the limitations were clear and the approach could be reproduced.',
+      cover: 'image/fat-water-mri.png',
+      teaser: 'Multi-peak Dixon signal model, R2* decay, and multi-start optimization for PDFF and R2* maps from multi-echo MRI.',
+      description: 'I implemented a full pipeline for quantitative fat fraction (PDFF) and R2* mapping from multi-echo magnitude MRI. The signal model uses a six-peak fat spectrum (relative amplitudes and chemical-shift frequencies from the literature) plus water, with R2* decay; I also explored a dual-R2* variant (separate decay for water and fat) to study stability. Because we fit magnitude-only data, fat–water ambiguity is inherent—I visualised how different water/fat amplitude pairs produce similar magnitude curves and used multi-start constrained optimisation (fmincon with bounds on amplitudes and R2*) to reduce local-minimum failures. I compared a least-squares objective on magnitude with a Rician negative log-likelihood to better match the noise model. Validation was hierarchical: first on simulated signals with known parameters and additive complex Gaussian noise (then magnitude, so effective Rician), then on in vivo DICOM multi-echo data. The in vivo pipeline loads 4D DICOM (slices × echo times), runs voxel-wise fitting in parallel, and post-processes the PDFF and R2* maps with median filtering and light Gaussian smoothing for robustness.',
+      approach: 'I structured the work in three layers. (1) Signal model and ambiguity: I coded three variants—single-peak fat with no decay, multi-peak fat with no decay, and multi-peak plus single R2* decay—and plotted magnitude vs echo time and trajectories in the complex plane to see how different (ρw, ρf) pairs can give similar |S(t)|, which motivates multi-start and bounds. (2) Parameter estimation: For each voxel (or simulated signal), I minimised sum of squared errors between observed and model magnitude, with bounds [0,1] on water and fat amplitudes and [50, 90] s⁻¹ on R2* to match physiologically plausible values. I used 20 multi-start initialisations (water-dominant, fat-dominant, and random perturbations) and kept the fit with lowest SSE; I also added a Rician-likelihood objective and compared convergence and robustness. I guarded against division-by-zero when assessing “success” (clustering of solutions). (3) Real data: I wrote a DICOM loader that parses EchoTime and SliceLocation, selects magnitude images, and builds a 4D array (row × col × slice × echo). For each voxel I fit the multi-peak + R2* model once and wrote out both PDFF = ρf/(ρw+ρf) and R2* when the fit was within bounds and local SNR was sufficient, using raw magnitude (no synthetic noise on real data) and safe denominators when assessing success and error metrics; then I applied 2D median and Gaussian smoothing to produce the final PDFF and R2* maps.',
       points: [
-        'Signal models for fat fraction (PDFF) and R2*; fat–water ambiguity and real-tissue signal modeling',
-        'Parallelized multi-start optimization; Gaussian and Rician noise adaptation; validation on simulated, phantom, and in vivo data',
+        'Six-peak fat spectrum + water + R2* decay; magnitude-only fitting and fat–water ambiguity analysis',
+        'Multi-start constrained optimisation (fmincon); comparison of SSE vs Rician likelihood; dual-R2* stability study',
+        '4D DICOM loading, parallel voxel-wise fitting, and median + Gaussian smoothing for PDFF and R2* maps',
       ],
     },
-    {
-      title: 'Decoding Brain Activity for Semantic Video Content Translation',
-      period: 'Apr 2024 – Dec 2024',
-      context: 'NLP / Neuroscience',
-      teaser: 'One research project: decoding semantic video content from brain activity and mapping to LLM space.',
-      description: 'I contributed to one research project that aimed to decode semantic video content from brain activity recorded while participants watched videos, and to map those brain signals to large language model (LLM) representations. The project was scoped as a single research initiative with a clear question (can we decode “what” is being watched from brain activity?) and a methodology that linked neuroscience and NLP.',
-      approach: 'I approached it as one project with two main steps: (1) decode relevant features from brain activity (e.g. via encoding models or dimensionality reduction), and (2) align those features to an LLM or semantic space so that the decoded content could be interpreted or translated. I helped design the experimental and analysis pipeline, made sure that train/test splits respected time or subject so we did not leak information, and documented the choices so the work could be replicated and extended.',
-      points: [
-        'Methods to decode semantic video content from brain activity during video viewing',
-        'Mapping brain signals to large language model representations',
-      ],
-    },
+    // Decoding Brain Activity — commented out for now
+    // {
+    //   title: 'Decoding Brain Activity for Semantic Video Content Translation',
+    //   period: 'Apr 2024 – Dec 2024',
+    //   context: 'NLP / Neuroscience',
+    //   teaser: 'One research project: decoding semantic video content from brain activity and mapping to LLM space.',
+    //   description: 'I contributed to one research project that aimed to decode semantic video content from brain activity recorded while participants watched videos, and to map those brain signals to large language model (LLM) representations. The project was scoped as a single research initiative with a clear question (can we decode “what” is being watched from brain activity?) and a methodology that linked neuroscience and NLP.',
+    //   approach: 'I approached it as one project with two main steps: (1) decode relevant features from brain activity (e.g. via encoding models or dimensionality reduction), and (2) align those features to an LLM or semantic space so that the decoded content could be interpreted or translated. I helped design the experimental and analysis pipeline, made sure that train/test splits respected time or subject so we did not leak information, and documented the choices so the work could be replicated and extended.',
+    //   points: [
+    //     'Methods to decode semantic video content from brain activity during video viewing',
+    //     'Mapping brain signals to large language model representations',
+    //   ],
+    // },
     {
       title: 'League of Legends Match Outcome Prediction',
       period: 'Feb 2024 – Mar 2024',
       context: 'Data Science / ML',
+      cover: 'image/league-of-legends.png',
+      link: 'https://ailinnastar.github.io/LeagueOfLegends/',
       teaser: 'One data science project: full pipeline from raw match data to outcome prediction and fairness analysis.',
       description: 'I completed one data science project that took raw League of Legends match data through cleaning, imputation, hypothesis testing, feature engineering, and model training to predict match outcome (reaching about 88% accuracy), with a fairness analysis across player segments. The project was run as a single end-to-end pipeline so that every step—from data quality to model choice to evaluation—was documented and reproducible.',
       approach: 'I treated it as one project with a clear sequence: understand the data, define the prediction task, build features, train and tune models, then evaluate and check fairness. I started by cleaning the data and handling missing values in a way that was explicit and repeatable. I then defined a set of features (e.g. champion picks, roles, historical performance) and used hypothesis testing where it helped (e.g. which features differed across outcomes). I trained several model families, tuned hyperparameters with a proper validation set, and reported accuracy on a held-out test set. I also ran a fairness-style analysis across player segments so we could see if the model behaved differently for different groups.',
@@ -157,9 +166,6 @@ export const projectsEn = {
       title: 'Stablecoin-Based Cross-Border E-Commerce Payments',
       period: 'Ongoing',
       context: 'Web3 / Personal Research',
-      teaser: 'One research project: comparing traditional vs stablecoin-based cross-border flows and seller economics.',
-      description: 'I am working on one self-directed research project that compares traditional and stablecoin-based cross-border payment flows for e-commerce—including fees, FX risk, and regulation—and builds scenario-based models for settlement costs and capital lock-up and their impact on cross-border seller unit economics. The project is scoped as a single “report + model” so that the conclusions are clear and the assumptions can be updated as the market and regulation evolve.',
-      approach: 'I am approaching it as one project with two parts: (1) a qualitative and quantitative comparison of traditional vs stablecoin flows (costs, speed, risk, regulation), and (2) a simple scenario model that links payment design to settlement cost and capital lock-up and then to seller economics. I am using public sources and industry reports for the comparison and building the model in a spreadsheet or lightweight code so that inputs can be changed and the impact on unit economics is transparent. I am documenting assumptions and sources so the work can be updated or extended later.',
       points: [
         'Comparison of traditional vs stablecoin-based cross-border payment flows; fees, FX risk, and regulation',
         'Scenario-based models for settlement costs and capital lock-up; impact on cross-border seller unit economics',

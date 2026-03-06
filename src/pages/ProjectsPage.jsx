@@ -143,6 +143,13 @@ export default function ProjectsPage({ lang }) {
               {(openedItem.company || openedItem.period) && (
                 <p className="diary-meta">{[openedItem.company, openedItem.period].filter(Boolean).join(' · ')}{openedItem.context ? ` · ${openedItem.context}` : ''}</p>
               )}
+              {openedItem.link && (
+                <p className="diary-project-link">
+                  <a href={openedItem.link} target="_blank" rel="noopener noreferrer" className="diary-link-button">
+                    {content.sectionTitles?.viewProject ?? 'View project →'}
+                  </a>
+                </p>
+              )}
               {openedItem.description && <p className="diary-desc">{openedItem.description}</p>}
               {openedItem.approach && (
                 <div className="diary-approach">
